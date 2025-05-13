@@ -1,0 +1,63 @@
+﻿@model IEnumerable<EventEaseDB.Models.Eventss>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Venue.venueName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.eventName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.eventDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.eventTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.eventDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageURL)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Venue.venueName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.eventName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.eventDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.eventTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.eventDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImageURL)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EventId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EventId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EventId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<EventEaseProject.Models.ViewModels.BookingDisplayViewModel>
+
+@{
+    ViewData["Title"] = "Bookings Overview";
+}
+
+<h1>Bookings</h1>
+
+<form asp-action="Index" method="get">
+    <div class="form-group">
+        <input type="text" name="searchString" class="form-control" placeholder="Search by Booking ID or Event Name" value="@Context.Request.Query["searchString"]" />
+        <button type="submit" class="btn btn-primary mt-2">Search</button>
+    </div>
+</form>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New Booking</a>
+</p>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No bookings found.</div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>Event Name</th>
+                <th>Venue Name</th>
+                <th>Booking Date</th>
+                <th>Customer Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.BookingId</td>
+                    <td>@item.EventName</td>
+                    <td>@item.VenueName</td>
+                    <td>@item.BookingDate</td>
+                    <td>@item.CustomerEmail</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.BookingId" class="btn btn-sm btn-warning">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.BookingId" class="btn btn-sm btn-info">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.BookingId" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
